@@ -15,19 +15,23 @@ public class Library {
 
     // Attributes
     private String name;
-    private List<Book> books;
+    private List<Item> items;
+    private List<Loan> activeLoans;
+    private List<Loan> completedLoans;
 
     /**
      * Constructs a new Library object.
      */
-    public Library(String name, List<Book> books) {
+    public Library(String name, List<Item> items) {
         this.name = name;
-        this.books = books;
+        this.items = items;
+        this.activeLoans = null;
+        this.completedLoans = null;
     }
 
-    public void addBook(Book book) {
+    public void addBook(Item item) {
         // int nb_books_before = this.books.size();
-        this.books.add(book);
+        this.items.add(item);
         // int nb_books_after = this.books.size();
         // if (nb_books_after == nb_books_before + 1) {
         // return true;
@@ -36,11 +40,11 @@ public class Library {
         // }
     }
 
-    public void displayBooks() {
-        if (this.books.size() != 0) {
-            System.out.println("List of books available in the library :");
-            for (Book book : this.books) {
-                System.out.println(book.toString());
+    public void displayItems() {
+        if (this.items.size() != 0) {
+            System.out.println("List of items available in the library :");
+            for (Item item : this.items) {
+                System.out.println(item.toString());
             }
         } else {
             System.out.println("Error : no book in the library.");
@@ -91,5 +95,28 @@ public class Library {
         IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
+    }
+
+    public Loan findActiveLoanForItem(Item item) {
+        Loan res = null;
+        for (Loan loan: this.activeLoans){
+            if (loan.getItemName() == item.getTitle()) {
+                res = loan;
+                break;
+            }
+        }
+        return res;
+    }
+
+    public List<Book> getBooksByAuthor(Author author) {
+        List<Book> list_book_by_author;
+        for (Item item: this.items){
+            if (item instanceof Book){
+                if (item.getAuthor() == author) {
+                    list_book_by_author.add(item);
+                }
+            }            
+        }
+        return list_book_by_author;
     }
 }

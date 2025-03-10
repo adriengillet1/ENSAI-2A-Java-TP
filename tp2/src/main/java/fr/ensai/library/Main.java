@@ -16,13 +16,18 @@ public class Main {
                 1954,
                 423);
 
-        List<Book> books = new ArrayList<>();
-        books.add(fellowshipOfTheRing);
+        Magazine tvMagazine = new Magazine("61565-156-54", "TV Magazine", "5", 2015, 48);
+        Magazine autoMotoMagazine = new Magazine("8954-8484-46", "Auto-Moto Magazine", "6", 2020, 96);
 
-        Library my_Library = new Library("La librairie de AD", books);
+        List<Item> items = new ArrayList<>();
+        items.add(fellowshipOfTheRing);
+        items.add(tvMagazine);
+        items.add(autoMotoMagazine);
+
+        Library my_Library = new Library("La librairie de AD", items);
 
         my_Library.loadBooksFromCSV("books.csv");
 
-        my_Library.displayBooks();
+        my_Library.displayItems();
     }
 }
