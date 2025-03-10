@@ -1,5 +1,8 @@
 package fr.ensai.library;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,6 +16,13 @@ public class Main {
                 1954,
                 423);
 
-        System.out.println(fellowshipOfTheRing.toString());
+        List<Book> books = new ArrayList<>();
+        books.add(fellowshipOfTheRing);
+
+        Library my_Library = new Library("La librairie de AD", books);
+
+        my_Library.loadBooksFromCSV("books.csv");
+
+        my_Library.displayBooks();
     }
 }

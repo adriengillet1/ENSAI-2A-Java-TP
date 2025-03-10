@@ -25,19 +25,20 @@ public class Library {
         this.books = books;
     }
 
-    public boolean addBook(Book book) {
-        int nb_books_before = this.books.size();
+    public void addBook(Book book) {
+        // int nb_books_before = this.books.size();
         this.books.add(book);
-        int nb_books_after = this.books.size();
-        if (nb_books_after == nb_books_before + 1) {
-            return true;
-        } else {
-            return false;
-        }
+        // int nb_books_after = this.books.size();
+        // if (nb_books_after == nb_books_before + 1) {
+        // return true;
+        // } else {
+        // return false;
+        // }
     }
 
     public void displayBooks() {
         if (this.books.size() != 0) {
+            System.out.println("List of books available in the library :");
             for (Book book : this.books) {
                 System.out.println(book.toString());
             }
@@ -79,7 +80,6 @@ public class Library {
                         String authorNationality = "French";
                         author = new Author(authorName, authorAge, authorNationality);
                         authors.put(authorName, author);
-                        System.out.println(author.toString());
                     }
                     Book book = new Book(isbn, title, author, year, pageCount);
 
